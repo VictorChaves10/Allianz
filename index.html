@@ -1,0 +1,217 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates Allianz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    var BE = document.getElementById("BE")
+    const saves = []
+    i = 0
+    save[i] = document.querySelector("saves")
+    count = 0
+
+    function control() {
+        function getZero(i) {
+            if (i < 10) { i = "0" + i }
+            return i;
+        }
+        count += 1
+        const d = new Date();
+        const days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+        hour = getZero(d.getHours())
+        minute = getZero(d.getMinutes())
+        second = getZero(d.getSeconds())
+        day = days[d.getDay()]
+        time = day + " " + "-" + " " + hour + ":" + minute + ":" + second
+        controle
+        document.getElementById('controle').textContent += time + " - " + count + "\n\n" + document.getElementById('output').textContent + "\n\n" + "======================" + "\n\n"
+    }
+    
+    function clean(){
+    document.getElementById("title").value = ""
+    document.getElementById("Nome").value = ""
+    document.getElementById("email").value = ""
+    document.getElementById("tel").value = ""
+    document.getElementById("BE").value = ""
+    document.getElementById("hostname").value = ""
+    document.getElementById("hora").value = ""
+    document.getElementById("cnpj").value = ""
+    document.getElementById("apolice").value = ""
+    document.getElementById("razao").value = ""
+    document.getElementById("msg").value = ""
+
+
+}
+    function save() {
+        i += 1
+        save[i] = document.getElementById("msg").value;
+        var select = document.getElementById("templates");
+        const option = document.createElement("option")
+        option.value = save[i]
+        option.text = prompt("Digite o nome do template: ")
+        select.add(option);
+        console.log("Foi")
+        localStorage.templates = document.getElementById("templates").innerHTML;
+    }
+    function remove() {
+        var select = document.getElementById("templates").selectedIndex;
+        var x = document.getElementById("templates").options;
+        if (confirm("Você está prestes a remover o seguinte template: " + x[select].text + "\n" + "deseja continuar?")) {
+            var select = document.getElementById("templates");
+            select.remove(select.selectedIndex)
+        }
+    }
+    function load() {
+        document.getElementById("msg").value = save[i];
+        document.getElementById("templates").innerHTML = localStorage.templates;
+    }
+
+    function template() {
+        var select = document.getElementById("templates").selectedIndex;
+        var x = document.getElementById("templates").options;
+        var template = document.getElementById("templates").value;
+        document.getElementById("msg").value = template;
+        document.getElementById("title").value = x[select].text;
+    }
+
+
+    function Copy() {
+        var copyText = document.getElementById("output");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        alert("Texto copiado: \n\n\n" + copyText.value);
+    }
+
+
+    function Copycontrol() {
+        var copyText = document.getElementById("controle");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        alert("Texto copiado: \n\n\n" + copyText.value);
+    }
+
+    function funcao2() {
+        document.getElementById('output').textContent = ""
+        var textarea = document.getElementById("output").value;
+        var BE = document.getElementById("BE").value
+        var Nome = document.getElementById("Nome").value
+        var email = document.getElementById("email").value
+        var tel = document.getElementById("tel").value
+        var trouble = document.getElementById("msg").value
+        var title = document.getElementById("title").value
+        var hostname = document.getElementById("hostname").value
+        var cnpj = document.getElementById("cnpj").value
+        var razao = document.getElementById("razao").value
+        var apolice = document.getElementById("apolice").value
+        var hora = document.getElementById("hora").value
+        var modelo = document.querySelector('input[name="modelo"]:checked').value;
+        document.getElementById('output').textContent += "BE: " + BE + "\n" + "Nome: " + Nome + "\n" + "E-mail: " + email + "\n" + "Telefone: " + tel + "\n" + "Título: " + title + "\n" + "Hostname: " + hostname + "\n" + "Horário disponível: " + hora + "\n" + "Modalidade de trabalho: " + modelo + "\n" + "CNPJ: " + cnpj + "\n" + "Razão Social: " + razao + "\n" + "Apolice: " + apolice + "\n\n" + "Troubleshooting: \n" + "\n" + trouble
+            control();
+
+
+    }
+    
+</script>
+
+<body>
+    <article>
+        <div id = saves></div>
+        
+        <div>
+            <label for="Nome">Nome:</label>
+            <input type="text" id="Nome" class="entrada" />
+        </div>
+        <div>
+            <label for="BE">Be/Ba:</label>
+            <input type="text" id="BE" class="entrada" />
+        </div>
+        <div>
+            <label for="Email">E-mail:</label>
+            <input type="email" id="email" class="entrada" />
+        </div>
+        <div>
+            <label for="Telefone">Telefone:</label>
+            <input type="tel" id="tel" class="entrada" />
+        </div>
+        <div>
+            <label for="Horário">Disponibiliade:</label>
+            <input type="text" id="hora" class="entrada" />
+        </div>
+        <div>
+            <label for="Hostname">Hostname:</label>
+            <input type="text" id="hostname" class="entrada" />
+        </div>
+        <div>
+            <label for="Titulo">Título:</label>
+            <input type="text" id="title" class="entrada" />
+        </div>
+        <div>
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" class="entrada" />
+        </div>
+        <div>
+            <label for="razao">Razão Social:</label>
+            <input type="text" id="razao" class="entrada" />
+        </div>
+        <div>
+            <label for="apolice">Apólice:</label>
+            <input type="text" id="apolice" class="entrada" />
+        </div>
+
+        <form>
+            <label for="Home">Home*: </label>
+            <input type="radio" name="modelo" value="Home Office" class="bolinha">
+            <label for="Site">Site*: </label>
+            <input type="radio" name="modelo" value="Escritório" class="bolinha">
+        </form>
+
+        <input id="btn-clean" type="button" onclick="clean()" value="Limpar" />
+    </article>
+
+    <section>
+
+        <div id=troubleshooting>
+            <h1>Troubleshooting: </h1>
+            <div id="template"><label for="templates">Templates:</label>
+                <select name="templates" id="templates" onchange="template()">
+                    <option value="None" id="x">None</option>
+                    <option value="ResetSenha" id="x">Reset Senha</option>
+                </select>
+            </div>
+            <label for="msg"></label>
+            <textarea id="msg" rows="10" cols="50" placeholder="Digite seu troubleshooting aqui."></textarea>
+        </div>
+        <div id="buttons-trouble">
+            <input id="button-enviar" type="button" onclick="funcao2()" value="Enviar" />
+            <input type="button" id="btnAdd" onclick="save()" value="Save" />
+            <input id="btn-load" type="button" onclick="load()" value="Load" />
+            <input type="button" id="btnRemove" onclick="remove()" value="Remove" />
+        </div>
+
+        <div id=outputt>
+            <h1>Output:</h1>
+            <textarea id="output" onkeyup="funcao2();" rows="10" cols="50" disabled placeholder = "Após clicar em enviar o template aparecerá aqui."></textarea>
+        </div>
+        <input id="btn-copiar" type="button" onclick="Copy()" value="Copiar" />
+
+    </section>
+
+    <div id="Control">
+        <div>
+            <h1>Control: </h1>
+            <textarea id="controle" onkeyup="funcao2();" rows="5" cols="25" disabled
+                placeholder="Controle de chamados."></textarea><br><br>
+            <input type="button" onclick="Copycontrol()" value="Copiar" />
+        </div>
+        
+        <img id="logo" src="R.png" width="200px" alt="logo">
+    </div>
+
+</body>
+
+</html>
